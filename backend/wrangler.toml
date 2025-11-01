@@ -1,0 +1,11 @@
+name = "netlog-dev-backend"
+main = "./dist/index.js"
+compatibility_date = "2023-10-30"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "netlog-db"
+database_id = "a4fde6aa-c3bd-41b2-8f81-f7bc193f8dc6"
+
+[build]
+command = "npx tsc"
