@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface EventSource {
@@ -16,7 +16,7 @@ interface EventLog {
 
 const API_BASE_URL = 'https://netlog-dev-backend.zzlee-tw.workers.dev'; // Your deployed backend URL
 
-const EventList: React.FC = () => {
+const EventList = forwardRef((props, ref) => {
   const [eventSources, setEventSources] = useState<EventSource[]>([]);
   const [selectedSource, setSelectedSource] = useState<EventSource | null>(null);
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
@@ -27,6 +27,16 @@ const EventList: React.FC = () => {
     fetchEventSources();
     fetchAllEventLogs(); // Fetch all events by default on initial load
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    refreshEvents() {
+      if (selectedSource) {
+        fetchEventLogs(selectedSource.id);
+      } else {
+        fetchAllEventLogs();
+      }
+    }
+  }));
 
   const fetchEventSources = async () => {
     try {
@@ -159,6 +169,6 @@ const EventList: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default EventList;
