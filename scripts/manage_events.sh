@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API_BASE_URL="https://netlog-dev-backend.zzlee-tw.workers.dev"
+API_BASE_URL="https://netlog-dev-backend.yuan88yuan-tw.workers.dev"
 
 function list_events_by_source_name() {
   local source_name="$1"
@@ -33,10 +33,10 @@ function create_event() {
     return 1
   fi
 
-  echo "Creating event log for source '$source_name' with content: '$content' நான்காவது..."
+  # echo "Creating event log for source '$source_name' with content: '$content' ..."
   curl -X POST "${API_BASE_URL}/event-logs" \
        -H "Content-Type: application/json" \
-       -d "{\"event_source_name\": \"${source_name}\", \"content\": \"${content}\"}" | jq '.'
+       -d "{\"event_source_name\": \"${source_name}\", \"content\": \"${content}\"}"
 }
 
 function list_all_events() {
