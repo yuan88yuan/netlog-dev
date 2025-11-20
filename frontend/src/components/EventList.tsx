@@ -14,9 +14,9 @@ interface EventLog {
   event_source_name: string;
 }
 
-const API_BASE_URL = 'https://netlog-dev-backend.zzlee-tw.workers.dev'; // Your deployed backend URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // Your deployed backend URL
 
-const EventList = forwardRef((props, ref) => {
+const EventList = forwardRef((_props, ref) => {
   const [eventSources, setEventSources] = useState<EventSource[]>([]);
   const [selectedSource, setSelectedSource] = useState<EventSource | null>(null);
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
@@ -149,13 +149,25 @@ const EventList = forwardRef((props, ref) => {
                     <thead>
                       <tr>
                         <th scope="col">日期時間</th>
+                        {!selectedSource && <th scope="col">Event Source</th>}
                         <th scope="col">事件內容</th>
                       </tr>
                     </thead>
                     <tbody>
                       {eventLogs.map((log) => (
                         <tr key={log.id}>
-                          <td>{new Date(log.timestamp).toLocaleString()}</td>
+                          <td>
+                            {new Date(log.timestamp).toLocaleString(undefined, {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit',
+                              hour12: false,
+                            })}
+                          </td>
+                          {!selectedSource && <td>{log.event_source_name}</td>}
                           <td>{log.content}</td>
                         </tr>
                       ))}

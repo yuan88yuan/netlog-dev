@@ -8,7 +8,7 @@ interface CreateEventProps {
   onEventCreated: () => void;
 }
 
-const API_BASE_URL = 'https://netlog-dev-backend.zzlee-tw.workers.dev'; // Your deployed backend URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // Your deployed backend URL
 
 const CreateEvent: React.FC<CreateEventProps> = ({ show, onClose, onEventCreated }) => {
   const [eventSourceName, setEventSourceName] = useState<string>('');
