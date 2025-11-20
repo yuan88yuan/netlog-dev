@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.pt-custom-for-fixed-header {
+  padding-top: 80px; /* Adjust this value as needed to clear the fixed header */
+}
+
+.z-index-sticky {
+  z-index: 1020; /* Bootstrap's .fixed-top uses 1030, so choose a value that works for your layout */
+}
+
 a {
   font-weight: 500;
   color: #646cff;
