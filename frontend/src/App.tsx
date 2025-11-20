@@ -24,8 +24,8 @@ const AppContent = () => {
 
   return (
     <div className="container py-4">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="text-primary mb-0">
+      <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mb-4">
+        <h1 className="text-primary mb-3 mb-md-0">
           {location.pathname === '/sources' ? 'Event Source Manager' : 'Event Dashboard'}
         </h1>
         <div className="d-flex align-items-center">

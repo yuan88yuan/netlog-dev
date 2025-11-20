@@ -163,37 +163,39 @@ const EventSourceManager: React.FC = () => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {eventSources.map((source) => (
-                  <tr key={source.id}>
-                    <td>{source.id}</td>
-                    <td>{source.name}</td>
-                    <td>
-                      <button
-                        className="btn btn-warning btn-sm me-2"
-                        onClick={() => handleShowPruneModal(source)}
-                      >
-                        Prune
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDeleteEventSource(source.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+            <div className="table-responsive">
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {eventSources.map((source) => (
+                    <tr key={source.id}>
+                      <td>{source.id}</td>
+                      <td>{source.name}</td>
+                      <td>
+                        <button
+                          className="btn btn-warning btn-sm me-2"
+                          onClick={() => handleShowPruneModal(source)}
+                        >
+                          Prune
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleDeleteEventSource(source.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>

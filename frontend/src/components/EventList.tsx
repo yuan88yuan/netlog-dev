@@ -144,35 +144,37 @@ const EventList = forwardRef((_props, ref) => {
               {eventLogs.length === 0 ? (
                 <p className="text-muted">No logs found.</p>
               ) : (
-                <div className="table-responsive">
-                  <table className="table table-hover table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">日期時間</th>
-                        {!selectedSource && <th scope="col">Event Source</th>}
-                        <th scope="col">事件內容</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {eventLogs.map((log) => (
-                        <tr key={log.id}>
-                          <td>
-                            {new Date(log.timestamp).toLocaleString(undefined, {
-                              year: 'numeric',
-                              month: '2-digit',
-                              day: '2-digit',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              second: '2-digit',
-                              hour12: false,
-                            })}
-                          </td>
-                          {!selectedSource && <td>{log.event_source_name}</td>}
-                          <td>{log.content}</td>
+                <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+                  <div className="table-responsive">
+                    <table className="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">日期時間</th>
+                          {!selectedSource && <th scope="col">Event Source</th>}
+                          <th scope="col">事件內容</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {eventLogs.map((log) => (
+                          <tr key={log.id}>
+                            <td>
+                              {new Date(log.timestamp).toLocaleString(undefined, {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                                hour12: false,
+                              })}
+                            </td>
+                            {!selectedSource && <td>{log.event_source_name}</td>}
+                            <td>{log.content}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
             </div>
