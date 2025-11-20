@@ -5,7 +5,7 @@
 # $ADDRFAMS: 地址族 (e.g., ipv4, ipv6)
 # $STATE: 當前的網路狀態 (e.g., routable)
 
-LOG_FILE="/var/log/dhcp_action_log.txt"
+LOG_FILE="/var/log/netlog.txt"
 
 # 檢查變數是否為空，確保在正確的事件中執行
 if [ -z "$IFACE" ] || [ "$STATE" != "routable" ]; then
